@@ -2,7 +2,7 @@
     package="com.example.fastpay">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="Fast Pay"
+        android:label="Recyclo"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

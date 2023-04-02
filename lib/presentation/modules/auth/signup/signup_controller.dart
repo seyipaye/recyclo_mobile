@@ -34,7 +34,6 @@ class SignupController extends GetxController {
   }
 
   void createAccount() {
-
     FocusManager.instance.primaryFocus?.unfocus();
 
     final form = formKey.currentState!;
@@ -46,9 +45,10 @@ class SignupController extends GetxController {
         return;
       }
 
-      showLoadingState;
+      // showLoadingState;
 
-      // This prevents signing up as a guest
+      Get.offAndToNamed(Routes.home);
+      return;
 
       AuthRepository.instance
           .signup(
