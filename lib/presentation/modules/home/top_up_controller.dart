@@ -10,8 +10,8 @@ import '../../../../domain/repositories/auth_repo.dart';
 
 class SpotsController extends GetxController {
   final isLoading = true.obs;
-  final banks = Rx<List<Sale>?>(null);
-  
+  final banks = Rx<List<Spots>?>(null);
+
   Rx<User> get user => AuthRepository.instance.user;
   final CurrencyTextInputFormatter formatter = CurrencyTextInputFormatter(
       locale: 'en_NG', decimalDigits: 0, symbol: '₦');

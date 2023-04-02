@@ -6,7 +6,7 @@ part of 'sale.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Sale _$SaleFromJson(Map<String, dynamic> json) => Sale(
+Spots _$SaleFromJson(Map<String, dynamic> json) => Spots(
       id: json['_id'] as String,
       vendorId: json['vendorId'] as String,
       orderId: json['orderId'] as String,
@@ -15,7 +15,7 @@ Sale _$SaleFromJson(Map<String, dynamic> json) => Sale(
       updatedAt: DateTime.parse(json['updatedAt'] as String),
     );
 
-Map<String, dynamic> _$SaleToJson(Sale instance) => <String, dynamic>{
+Map<String, dynamic> _$SaleToJson(Spots instance) => <String, dynamic>{
       '_id': instance.id,
       'vendorId': instance.vendorId,
       'orderId': instance.orderId,

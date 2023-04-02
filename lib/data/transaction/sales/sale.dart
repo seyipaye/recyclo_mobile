@@ -13,10 +13,10 @@ part 'sale.g.dart';
                 "__v": 0
  */
 
-typedef Sales = List<Sale>;
+typedef Sales = List<Spots>;
 
 @JsonSerializable()
-class Sale {
+class Spots {
   @JsonKey(name: '_id')
   String id;
   String vendorId;
@@ -25,7 +25,7 @@ class Sale {
   DateTime createdAt;
   DateTime updatedAt;
 
-  Sale({
+  Spots({
     required this.id,
     required this.vendorId,
     required this.orderId,
@@ -34,6 +34,6 @@ class Sale {
     required this.updatedAt,
   });
 
-  factory Sale.fromJson(Map<String, dynamic> json) => _$SaleFromJson(json);
+  factory Spots.fromJson(Map<String, dynamic> json) => _$SaleFromJson(json);
   Map<String, dynamic> toJson() => _$SaleToJson(this);
 }

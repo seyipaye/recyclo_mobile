@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:swift_pay_mobile/domain/app_shared_prefs.dart';
+import 'package:swift_pay_mobile/presentation/modules/home/profile_page.dart';
 import 'package:swift_pay_mobile/presentation/utils/constants.dart';
 import 'package:upgrader/upgrader.dart';
 
@@ -28,7 +29,7 @@ class HomeScreen extends GetView<HomeScreenController> {
     HomePage(),
     RecyclePage(),
     RewardsPage(),
-    HomePage(),
+    ProfilePage(),
   ];
 
   @override

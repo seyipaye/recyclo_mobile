@@ -33,65 +33,21 @@ class SpotsScreen extends GetView<SpotsController> {
             Expanded(
               child: ListView(
                 children: [
-                  Container(
-                    padding: EdgeInsets.all(30),
-                    margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(20),
-                      ),
-                      color: Color(0xFF004919).withOpacity(0.8),
-                    ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          flex: 2,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Green Bin',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              Gap(30),
-                              Text(
-                                '123 Main Street',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                '10km',
-                                style: TextStyle(
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              Text(
-                                'away',
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  )
+                  SpotCard(
+                    title: 'Green Bin',
+                    address: '123 Main Street',
+                    distance: '10km',
+                  ),
+                  SpotCard(
+                    title: 'Blue Bin',
+                    address: '456 Elm Street',
+                    distance: '12km',
+                  ),
+                  SpotCard(
+                    title: 'Yellow Bin',
+                    address: '789 Oak Street',
+                    distance: '15km',
+                  ),
                 ],
               ),
             ),
@@ -109,6 +65,82 @@ class SpotsScreen extends GetView<SpotsController> {
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class SpotCard extends StatelessWidget {
+  const SpotCard({
+    super.key,
+    required this.title,
+    required this.address,
+    required this.distance,
+  });
+
+  final String title;
+  final String address;
+  final String distance;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(30),
+      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(
+          Radius.circular(20),
+        ),
+        color: Color(0xFF004919).withOpacity(0.8),
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            flex: 2,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                  ),
+                ),
+                Gap(30),
+                Text(
+                  address,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  distance,
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'away',
+                  style: TextStyle(
+                    fontSize: 10,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
