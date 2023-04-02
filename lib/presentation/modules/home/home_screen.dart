@@ -9,6 +9,8 @@ import 'package:upgrader/upgrader.dart';
 import '../../../core/app_routes.dart';
 import '../../utils/strings.dart';
 import '../../utils/values.dart';
+import '../recycle/recycle_page.dart';
+import '../rewards/rewards_page.dart';
 import 'home_controller.dart';
 import 'home_page.dart';
 
@@ -24,12 +26,10 @@ class HomeScreen extends GetView<HomeScreenController> {
 
   final List<Widget> _pages = <Widget>[
     HomePage(),
+    RecyclePage(),
+    RewardsPage(),
+    HomePage(),
   ];
-
-  void logout() {
-    AppSharedPrefs.instance.clear();
-    Get.offAllNamed(Routes.onboarding);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,13 +39,7 @@ class HomeScreen extends GetView<HomeScreenController> {
     final cfg = AppcastConfiguration(url: appCastURL, supportedOS: ['android']);
 
     final scaffold = Scaffold(
-      body: Obx(() {
-        controller.selectedPage;
-        doAfterBuild(() {
-          if (controller.selectedPage == 2) logout();
-        });
-        return _pages.elementAt(0);
-      }),
+      body: Obx(() => _pages.elementAt(controller.selectedPage)),
       bottomNavigationBar: Obx(() => AppBottomNavBar(
             selectedIndex: controller.selectedPage,
             onTabChange: (index) {
@@ -128,16 +122,20 @@ class AppBottomNavBar extends StatelessWidget {
         onDestinationSelected: onTabChange,
         destinations: <NavigationDestination>[
           NavigationDestination(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home_outlined),
             label: 'Home',
           ),
           NavigationDestination(
-            icon: Icon(Icons.person),
-            label: 'Account',
+            icon: Icon(Icons.recycling_outlined),
+            label: 'Recycle',
           ),
           NavigationDestination(
-            icon: Icon(Icons.logout),
-            label: 'Logout',
+            icon: Icon(Icons.cases_outlined),
+            label: 'Rewards',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.person_2_outlined),
+            label: 'Profile',
           ),
           // NavigationDestination(
           //   icon: ImageIcon2.asset('assets/icons/profile.png'),

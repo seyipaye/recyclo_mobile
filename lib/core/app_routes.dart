@@ -10,6 +10,8 @@ import '../presentation/modules/auth/signup/signup_controller.dart';
 import '../presentation/modules/auth/signup/signup_screen.dart';
 import '../presentation/modules/home/home_controller.dart';
 import '../presentation/modules/home/home_screen.dart';
+import '../presentation/modules/home/spots_screen.dart';
+import '../presentation/modules/home/top_up_controller.dart';
 import '../presentation/modules/onboarding/onboarding_screen.dart';
 import '../presentation/modules/payment/offline_payment/offline_payment_controller.dart.dart';
 import '../presentation/modules/payment/offline_payment/offline_payment_screen.dart';
@@ -35,6 +37,7 @@ class Routes {
   // Home
   static const home = '/home';
   static const homeSection = '/homeSection';
+  static const spots = '/scanSpots';
   static const receivePayment = '/receivePayment';
   static const scanCode = '/scanCode';
   static const makePayment = '/makePayment';
@@ -206,6 +209,13 @@ class AppPages {
         Get.put(AppRepository());
         Get.put(HomeScreenController());
         Get.put(HomePageController());
+      }),
+    ),
+    GetPage(
+      name: Routes.spots,
+      page: () => SpotsScreen(),
+      binding: BindingsBuilder(() {
+        Get.put(SpotsController());
       }),
     ),
     GetPage(

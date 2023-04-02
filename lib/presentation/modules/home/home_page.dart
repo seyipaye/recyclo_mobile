@@ -1,9 +1,11 @@
 // ignore_for_file: must_be_immutable, unused_local_variable, unnecessary_statements, unnecessary_null_comparison
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:swift_pay_mobile/core/app_routes.dart';
 import 'package:swift_pay_mobile/presentation/widgets/app_card.dart';
-import 'package:swift_pay_mobile/presentation/widgets/money_text_view.dart';
 
+import '../../utils/colors.dart';
 import 'home_controller.dart';
 
 class HomePage extends GetView<HomePageController> {
@@ -11,85 +13,104 @@ class HomePage extends GetView<HomePageController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Hello ${controller.user.value.username}!'),
-        automaticallyImplyLeading: false,
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: controller.onFABPressed,
-        child: const Icon(
-          Icons.camera,
-          color: Colors.white,
-        ),
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          AppMaterial(
-            margin: EdgeInsets.all(20),
-            padding: EdgeInsets.all(50),
-            child: Column(
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Total Balance'),
-                Obx(
-                  () => MoneyText(
-                    controller.user.value.wallet?.balance ?? 0,
-                    fontsize: 40,
+                Gap(10),
+                Text(
+                  'Find Recyclo Spots Nearby',
+                  style: TextStyle(
+                    color: AppColors.primary,
+                    fontSize: 18,
                   ),
                 ),
-                IconButton(
-                    onPressed: controller.refresh,
-                    icon: Icon(
-                      Icons.refresh,
-                    )),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    buildActionButton(
-                      text: 'Top-up',
-                      onPressed: controller.topUp,
-                      icon: Icon(Icons.add_to_photos_outlined),
-                    ),
-                    buildActionButton(
-                      text: 'Recieve',
-                      onPressed: controller.recievePayment,
-                      icon: Icon(Icons.move_to_inbox_rounded),
-                    ),
-                    buildActionButton(
-                      text: 'Offline Pay',
-                      onPressed: controller.offlinePay,
-                      icon: Icon(Icons.offline_bolt_outlined),
-                    ),
-                  ],
-                )
+                Gap(5),
+                Image.asset('assets/images/location.png')
               ],
             ),
-          ),
-        ],
+            Container(
+              margin: EdgeInsets.only(right: 5),
+              child: Row(
+                children: [
+                  Image.asset(
+                    'assets/images/man_route.png',
+                    width: 230,
+                  ),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Text(
+                          'Let’s lead \nyou to the \nnearest \nrecyclo spot ',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: AppColors.primary,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        Gap(20),
+                        ElevatedButton(
+                          onPressed: () {
+                            Get.toNamed(Routes.spots);
+                          },
+                          child: Text(
+                            'Find Now',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: Size(114, 32),
+                            backgroundColor: AppColors.primary,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            AppMaterial(
+              margin: EdgeInsets.all(20),
+              padding: EdgeInsets.symmetric(vertical: 32, horizontal: 12),
+              color: AppColors.primary,
+              child: Column(
+                children: [
+                  Text(
+                    'Earn convertible points \nby recycling your \nwaste materials',
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          // navigateToPage(currentIndex + 1);
+                        },
+                        child: Text(
+                          'Recycle Now',
+                          style: TextStyle(color: AppColors.primary),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: Size(114, 32),
+                          backgroundColor: Colors.white,
+                        ),
+                      ),
+                      Image.asset('assets/images/plant.png')
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
-    );
-  }
-
-  Column buildActionButton({
-    required String text,
-    required VoidCallback onPressed,
-    required Widget icon,
-  }) {
-    return Column(
-      children: [
-        FloatingActionButton.small(
-            onPressed: onPressed,
-            elevation: 3,
-            shape: CircleBorder(),
-            child: icon),
-        Text(
-          text,
-          style: TextStyle(fontSize: 12),
-          textAlign: TextAlign.center,
-        )
-      ],
     );
   }
 }
